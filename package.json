@@ -1,5 +1,5 @@
 {
-	"name": "snowball",
+	"name": "vscode-snowball-syntax",
 	"displayName": "Snowball Language",
 	"description": "Snowball language support for VS Code",
 	"version": "0.0.6",
