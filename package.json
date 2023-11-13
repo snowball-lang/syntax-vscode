@@ -2,7 +2,7 @@
 	"name": "vscode-snowball-syntax",
 	"displayName": "Snowball Language",
 	"description": "Snowball language support for VS Code",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"publisher": "MauroBalades",
 	"engines": {
 		"vscode": "^0.10.1"
