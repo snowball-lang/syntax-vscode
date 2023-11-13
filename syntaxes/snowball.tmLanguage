@@ -1196,6 +1196,7 @@
 						<dict>
 							<key>match</key>
 							<string>(?&lt;=::)\s*</string>
+						</dict>
 					</array>
 				</dict>
 				<key>inheritance-clause</key>
