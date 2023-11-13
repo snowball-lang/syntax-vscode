@@ -914,7 +914,7 @@
 				<key>function-result</key>
 				<dict>
 					<key>begin</key>
-					<string>(?&lt;![/=\-+!*%&lt;&gt;&amp;|\^~.])(-&gt;)(?![/=\-+!*%&lt;&gt;&amp;|\^~.])\s*</string>
+					<string>(?&lt;![/=\-+!*%&lt;&gt;&amp;|\^~.])(?![/=\-+!*%&lt;&gt;&amp;|\^~.])\s*</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -1177,7 +1177,7 @@
 						<dict>
 							<key>name</key>
 							<string>keyword.control.import.snowball</string>
-						</dict>
+						</dict>						
 					</dict>
 					<key>end</key>
 					<string>(;)|$\n?|(?=//|/\*)</string>
@@ -1194,130 +1194,14 @@
 					<key>patterns</key>
 					<array>
 						<dict>
-							<key>begin</key>
-							<string>\G(?!;|$|//|/\*)(?:(typealias|struct|class|enum|protocol|var|func)\s+)?</string>
-							<key>beginCaptures</key>
-							<dict>
-								<key>1</key>
-								<dict>
-									<key>name</key>
-									<string>storage.modifier.snowball</string>
-								</dict>
-							</dict>
-							<key>end</key>
-							<string>(?=;|$|//|/\*)</string>
-							<key>patterns</key>
-							<array>
-								<dict>
-									<key>captures</key>
-									<dict>
-										<key>1</key>
-										<dict>
-											<key>name</key>
-											<string>punctuation.definition.identifier.snowball</string>
-										</dict>
-										<key>2</key>
-										<dict>
-											<key>name</key>
-											<string>punctuation.definition.identifier.snowball</string>
-										</dict>
-									</dict>
-									<key>match</key>
-									<string>(?x)
-										(?&lt;=\G|\.)
-										(?&lt;q&gt;`?)[\p{L}_][\p{L}_\p{N}\p{M}]*(\k&lt;q&gt;)
-									</string>
-									<key>name</key>
-									<string>entity.name.type.snowball</string>
-								</dict>
-								<dict>
-									<key>match</key>
-									<string>(?x)
-										(?&lt;=\G|\.)
-										\$[0-9]+
-									</string>
-									<key>name</key>
-									<string>entity.name.type.snowball</string>
-								</dict>
-								<dict>
-									<key>captures</key>
-									<dict>
-										<key>1</key>
-										<dict>
-											<key>patterns</key>
-											<array>
-												<dict>
-													<key>match</key>
-													<string>\.</string>
-													<key>name</key>
-													<string>invalid.illegal.dot-not-allowed-here.snowball</string>
-												</dict>
-											</array>
-										</dict>
-									</dict>
-									<key>match</key>
-									<string>(?x)
-										(?&lt;=\G|\.)
-										(?:
-											(
-												(?&lt;oph&gt;								# operator-head
-													[/=\-+!*%&lt;&gt;&amp;|^~?]
-												  | [\x{00A1}-\x{00A7}]
-												  | [\x{00A9}\x{00AB}]
-												  | [\x{00AC}\x{00AE}]
-												  | [\x{00B0}-\x{00B1}\x{00B6}\x{00BB}\x{00BF}\x{00D7}\x{00F7}]
-												  | [\x{2016}-\x{2017}\x{2020}-\x{2027}]
-												  | [\x{2030}-\x{203E}]
-												  | [\x{2041}-\x{2053}]
-												  | [\x{2055}-\x{205E}]
-												  | [\x{2190}-\x{23FF}]
-												  | [\x{2500}-\x{2775}]
-												  | [\x{2794}-\x{2BFF}]
-												  | [\x{2E00}-\x{2E7F}]
-												  | [\x{3001}-\x{3003}]
-												  | [\x{3008}-\x{3030}]
-												)
-												(
-													\g&lt;oph&gt;
-												  | (?&lt;opc&gt;								# operator-character
-														[\x{0300}-\x{036F}]
-													  | [\x{1DC0}-\x{1DFF}]
-													  | [\x{20D0}-\x{20FF}]
-													  | [\x{FE00}-\x{FE0F}]
-													  | [\x{FE20}-\x{FE2F}]
-													  | [\x{E0100}-\x{E01EF}]
-													)
-												)*
-											)
-										  | ( \. ( \g&lt;oph&gt; | \g&lt;opc&gt; | \. )+ )			# Dot operators
-										)
-										(?=\.|;|$|//|/\*|\s)
-									</string>
-									<key>name</key>
-									<string>entity.name.type.snowball</string>
-								</dict>
-								<dict>
-									<key>match</key>
-									<string>\.</string>
-									<key>name</key>
-									<string>punctuation.separator.import.snowball</string>
-								</dict>
-								<dict>
-									<key>begin</key>
-									<string>(?!\s*(;|$|//|/\*))</string>
-									<key>end</key>
-									<string>(?=\s*(;|$|//|/\*))</string>
-									<key>name</key>
-									<string>invalid.illegal.character-not-allowed-here.snowball</string>
-								</dict>
-							</array>
-						</dict>
+							<key>match</key>
+							<string>(?&lt;=::)\s*</string>
 					</array>
 				</dict>
 				<key>inheritance-clause</key>
 				<dict>
 					<key>begin</key>
-					<string>(:)(?=\s*\{)|(:)\s*</string>
+					<string>(extends)(?=\s*\{)|(extends)\s*</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -2106,8 +1990,6 @@
 									<string>#parameter-clause</string>
 								</dict>
 								<dict>
-									<key>comment</key>
-									<string>Swift 3: generic constraints after the parameters and return type</string>
 									<key>include</key>
 									<string>#generic-where-clause</string>
 								</dict>
@@ -2236,8 +2118,6 @@
 									<string>#function-result</string>
 								</dict>
 								<dict>
-									<key>comment</key>
-									<string>Swift 3: generic constraints after the parameters and return type</string>
 									<key>include</key>
 									<string>#generic-where-clause</string>
 								</dict>
@@ -3344,6 +3224,12 @@
 					<string>(?&lt;!\.)\b(?:super|self|Self)\b</string>
 					<key>name</key>
 					<string>variable.language.snowball</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(\b(?:new)\b)(\s*)(\b(?:type)\b)</string>
+					<key>name</key>
+					<string>keyword.other.declaration-specifier.snowball</string>
 				</dict>
 				<dict>
 					<key>match</key>
